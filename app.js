@@ -6,8 +6,8 @@
  */
 
 // ─── الإعدادات ──────────────────────────────
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwc1HcI06n-uZKTgzf-0RlGlDz1-5KDNrd6w8NxYlF-Rp9t7OTd5VhQv1woIQOGpLSu/exec";
-const PRODUCT_VALUE = 100;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyG5zcCYFGaCmcxoGQqVyOygOCT--wfCLTaN2J7-kn9DYS044VRFmYuiD7jPcl3sewT/exec";
+const PRODUCT_VALUE = 299;
 const PRODUCT_CURRENCY = "MAD";
 
 // ─── عناصر DOM ──────────────────────────────
