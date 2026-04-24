@@ -6,8 +6,8 @@
  */
 
 // ─── الإعدادات ──────────────────────────────
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyG5zcCYFGaCmcxoGQqVyOygOCT--wfCLTaN2J7-kn9DYS044VRFmYuiD7jPcl3sewT/exec";
-const PRODUCT_VALUE = 299;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwc1HcI06n-uZKTgzf-0RlGlDz1-5KDNrd6w8NxYlF-Rp9t7OTd5VhQv1woIQOGpLSu/exec";
+const PRODUCT_VALUE = 100;
 const PRODUCT_CURRENCY = "MAD";
 
 // ─── عناصر DOM ──────────────────────────────
@@ -107,16 +107,24 @@ function setButtonLoading(isLoading) {
 }
 
 // ─── إرسال الطلب ───────────────────────────
+// Google Apps Script doesn't return CORS headers, so we must use no-cors.
+// With no-cors the response is "opaque" (unreadable) — that's expected and fine.
+// We use a form-encoded URLSearchParams body because Google Apps Script
+// reads e.parameter reliably from that format, unlike raw JSON in no-cors mode.
 async function submitOrder(data) {
-  const response = await fetch(SCRIPT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(data),
-    redirect: "follow",
+  // Send as URL-encoded form so GAS can read e.parameter.name / phone / address
+  const body = new URLSearchParams({
+    name:    data.name,
+    phone:   data.phone,
+    address: data.address,
   });
 
-  if (!response.ok) throw new Error(`السيرفر رد ب ${response.status}`);
-  return await response.json();
+  await fetch(SCRIPT_URL, {
+    method: "POST",
+    mode:   "no-cors",   // required — GAS doesn't send CORS headers
+    body:   body,
+  });
+  // no-cors gives an opaque response; we can't read it, but the request IS sent.
 }
 
 // ─── معالج الإرسال ─────────────────────────
