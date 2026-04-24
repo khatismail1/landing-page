@@ -1,0 +1,378 @@
+/* ============================================
+   CUSTOM CSS — Gallery, Animations, States
+   Tailwind handles layout, spacing, colors
+   ============================================ */
+
+/* ─── Media Gallery Slides ─────────────────── */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  transform: scale(1.02);
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Navigation Arrows ────────────────────── */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #171717;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  opacity: 0;
+}
+
+.main-display:hover .nav-arrow {
+  opacity: 1;
+}
+
+.nav-arrow:hover {
+  background: #171717;
+  color: white;
+  border-color: #171717;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.nav-arrow--prev { left: 12px; }
+.nav-arrow--next { right: 12px; }
+
+/* ─── Thumbnails ───────────────────────────── */
+.thumb {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: white;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 0;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.thumb:hover {
+  border-color: #a3a3a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.thumb:hover img {
+  transform: scale(1.05);
+}
+
+.thumb.active {
+  border-color: #171717;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.thumb.active img {
+  opacity: 0.9;
+}
+
+.thumb-play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.thumb:hover .thumb-play-icon {
+  background: rgba(0,0,0,0.45);
+}
+
+/* ─── Play Button (Video Slide) ────────────── */
+.play-button {
+  border: none;
+  padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pulse Ring Animation */
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+/* ─── Input Error State ────────────────────── */
+.form-input.input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1px #ef4444 !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+/* ─── Submit Button States ─────────────────── */
+.btn-loader {
+  display: none;
+}
+
+.submit-btn.is-loading .btn-text {
+  display: none;
+}
+
+.submit-btn.is-loading .btn-loader {
+  display: inline-flex;
+}
+
+/* ─── Spinner ──────────────────────────────── */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Feedback Messages ────────────────────── */
+.form-feedback.feedback-error {
+  color: #ef4444;
+  background: #fef2f2;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  animation: slide-down 0.3s ease;
+}
+
+.form-feedback.feedback-success {
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #bbf7d0;
+  animation: slide-down 0.3s ease;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Thank You: Checkmark Animation ───────── */
+.checkmark-circle {
+  stroke: #16a34a;
+  stroke-width: 2;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: checkmark-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  stroke: #16a34a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkmark-stroke 0.35s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+}
+
+@keyframes checkmark-stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ─── Fade Up Animation ────────────────────── */
+.thankyou-title {
+  animation: fadeUp 0.6s ease-out 0.2s both;
+}
+
+.thankyou-message {
+  animation: fadeUp 0.6s ease-out 0.35s both;
+}
+
+.thankyou-details {
+  animation: fadeUp 0.6s ease-out 0.5s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Page Entrance Animations ─────────────── */
+.animate-slide-down {
+  animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Badge Bounce In ─────────────────────── */
+.animate-bounce-in {
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Price Pop Animation ──────────────────── */
+.animate-price-pop {
+  animation: pricePop 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+
+@keyframes pricePop {
+  0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+  60% { transform: scale(1.05) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ─── Shimmer Effect ───────────────────────── */
+.animate-shimmer {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 50%, #ef4444 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2s linear infinite;
+  font-weight: 700;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ─── Feature Items Stagger ────────────────── */
+.feature-item {
+  opacity: 0;
+  animation: fadeInRight 0.4s ease forwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.5s; }
+.feature-item:nth-child(2) { animation-delay: 0.6s; }
+.feature-item:nth-child(3) { animation-delay: 0.7s; }
+.feature-item:nth-child(4) { animation-delay: 0.8s; }
+
+/* ─── Trust Badges Stagger ─────────────────── */
+.trust-badge {
+  opacity: 0;
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.trust-badge:nth-child(1) { animation-delay: 0.9s; }
+.trust-badge:nth-child(2) { animation-delay: 1.0s; }
+.trust-badge:nth-child(3) { animation-delay: 1.1s; }
+
+/* ─── Form Fields Stagger ──────────────────── */
+.form-field {
+  opacity: 0;
+  animation: fadeInRight 0.4s ease forwards;
+}
+
+.form-field:nth-child(1) { animation-delay: 0.6s; }
+.form-field:nth-child(2) { animation-delay: 0.7s; }
+.form-field:nth-child(3) { animation-delay: 0.8s; }
+
+/* ─── Mobile: Always show arrows ───────────── */
+@media (max-width: 1023px) {
+  .nav-arrow {
+    opacity: 1;
+  }
+  .nav-arrow--prev { left: 8px; }
+  .nav-arrow--next { right: 8px; }
+  .nav-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .nav-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ─── Accessibility ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #e0e7ff;
+  color: #4338ca;
+}
