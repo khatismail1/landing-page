@@ -7,7 +7,7 @@
 
 // ─── الإعدادات ──────────────────────────────
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqtrYOJut-XgqdkOqi7L7is0w1p-pW0k10Vvu29ubw0vx8LZYN1-ioKhGiD5oEkSg-/exec";
-const PRODUCT_VALUE = 100;
+const PRODUCT_VALUE = 249;
 const PRODUCT_CURRENCY = "MAD";
 
 // ─── عناصر DOM ──────────────────────────────
