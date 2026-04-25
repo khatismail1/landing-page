@@ -191,13 +191,27 @@ function initGallery() {
   const counter = document.getElementById("slideCounter");
   const prevBtn = document.getElementById("prevSlide");
   const nextBtn = document.getElementById("nextSlide");
-  const playBtn = document.getElementById("playBtn");
+
+  const video    = document.getElementById("productVideo");
+  const muteBtn  = document.getElementById("muteBtn");
+  const iconMuted = document.getElementById("iconMuted");
+  const iconSound = document.getElementById("iconSound");
 
   if (!slides.length) return;
 
   let current = 0;
   const total = slides.length;
   let autoPlayInterval = null;
+
+  // Pause/resume video based on which slide is active
+  function syncVideo(index) {
+    if (!video) return;
+    if (index === 0) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }
 
   function goTo(index) {
     if (index < 0) index = total - 1;
@@ -211,6 +225,7 @@ function initGallery() {
 
     if (counter) counter.textContent = index + 1;
     current = index;
+    syncVideo(index);
   }
 
   function next() { goTo(current + 1); }
@@ -228,11 +243,13 @@ function initGallery() {
   if (prevBtn) prevBtn.addEventListener("click", () => { prev(); resetAutoPlay(); });
   if (nextBtn) nextBtn.addEventListener("click", () => { next(); resetAutoPlay(); });
 
-  // Play button (placeholder)
-  if (playBtn) {
-    playBtn.addEventListener("click", (e) => {
+  // Mute toggle button
+  if (muteBtn && video) {
+    muteBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      alert("هنا غادي يكون الفيديو — ضيف رابط الفيديو ديالك");
+      video.muted = !video.muted;
+      iconMuted.style.display = video.muted ? "block" : "none";
+      iconSound.style.display = video.muted ? "none"  : "block";
     });
   }
 

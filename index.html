@@ -76,31 +76,40 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
       <div class="media-gallery animate-fade-in-left">
         <div id="mainDisplay" class="main-display relative aspect-square rounded-2xl overflow-hidden bg-brand-bg border border-brand-border mb-3 cursor-zoom-in shadow-lg">
-          <div class="slide active" data-slide="0"><img src="https://picsum.photos/seed/gaming-keyboard/800/800" alt="كيبورد One Hand" class="w-full h-full object-cover"></div>
-          <div class="slide" data-slide="1"><img src="https://picsum.photos/seed/gaming-mouse-sepoma/800/800" alt="ماوس Sepoma 4200 DPI" class="w-full h-full object-cover"></div>
-          <div class="slide" data-slide="2"><img src="https://picsum.photos/seed/usb-hub-typec/800/800" alt="USB Hub" class="w-full h-full object-cover"></div>
-          <div class="slide" data-slide="3"><img src="https://picsum.photos/seed/gaming-mousepad/800/800" alt="تابي 40x30" class="w-full h-full object-cover"></div>
-          <div class="slide" data-slide="4">
-            <div class="video-slide w-full h-full bg-brand-black flex flex-col items-center justify-center gap-4 relative">
-              <img src="https://picsum.photos/seed/gaming-pack-full/800/800" alt="" class="absolute inset-0 w-full h-full object-cover opacity-50">
-              <div class="relative z-10 flex flex-col items-center gap-3">
-                <button id="playBtn" class="play-button w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl hover:bg-white hover:scale-110 transition-all duration-300 animate-pulse-ring">
-                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-brand-black mr-[-3px]" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </button>
-                <span class="text-white text-sm font-medium drop-shadow-lg">شوف كيفاش تستخدمو</span>
-              </div>
+          <!-- Slide 0: Video — plays automatically on page load (muted, as required by browsers) -->
+          <div class="slide active" data-slide="0">
+            <div class="video-slide w-full h-full bg-brand-black relative">
+              <video id="productVideo" class="absolute inset-0 w-full h-full object-cover" autoplay muted playsinline loop>
+                <source src="video6010590706781919294 (1).mp4" type="video/mp4">
+              </video>
+              <!-- Sound toggle button -->
+              <button id="muteBtn" title="تشغيل الصوت" aria-label="تشغيل الصوت"
+                style="position:absolute;bottom:12px;right:12px;z-index:20;background:rgba(0,0,0,0.55);border:none;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;backdrop-filter:blur(4px);">
+                <!-- Muted icon (shown by default) -->
+                <svg id="iconMuted" class="w-5 h-5" style="color:#fff;display:block;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+                <!-- Unmuted icon (hidden by default) -->
+                <svg id="iconSound" class="w-5 h-5" style="color:#fff;display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+              </button>
             </div>
           </div>
+          <div class="slide" data-slide="1"><img src="jedelclavier1.webp" alt="كيبورد One Hand" class="w-full h-full object-cover"></div>
+          <div class="slide" data-slide="2"><img src="mouse.webp" alt="ماوس Sepoma 4200 DPI" class="w-full h-full object-cover"></div>
+          <div class="slide" data-slide="3"><img src="usbhub.webp" alt="USB Hub" class="w-full h-full object-cover"></div>
+          <div class="slide" data-slide="4"><img src="tapi.webp" alt="تابي 40x30" class="w-full h-full object-cover"></div>
           <button id="prevSlide" class="nav-arrow nav-arrow--prev" aria-label="السابق"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
           <button id="nextSlide" class="nav-arrow nav-arrow--next" aria-label="التالي"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
           <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-[11px] px-3 py-1 rounded-full backdrop-blur-sm"><span id="slideCounter">1</span> / 5</div>
         </div>
         <div class="thumbnails grid grid-cols-5 gap-2">
-          <button class="thumb active" data-thumb="0"><img src="/jedelclavier1.webp" alt="jedel clavier"></button>
-          <button class="thumb" data-thumb="1"><img src="https://picsum.photos/seed/gaming-mouse-sepoma/200/200" alt=""></button>
-          <button class="thumb" data-thumb="2"><img src="https://picsum.photos/seed/usb-hub-typec/200/200" alt=""></button>
-          <button class="thumb" data-thumb="3"><img src="https://picsum.photos/seed/gaming-mousepad/200/200" alt=""></button>
-          <button class="thumb thumb-video" data-thumb="4"><img src="https://picsum.photos/seed/gaming-pack-full/200/200" alt=""><div class="thumb-play-icon"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></button>
+          <button class="thumb thumb-video active" data-thumb="0"><img src="jedelclavier1.webp" alt="فيديو"><div class="thumb-play-icon"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></button>
+          <button class="thumb" data-thumb="1"><img src="jedelclavier1.webp" alt="كيبورد"></button>
+          <button class="thumb" data-thumb="2"><img src="mouse.webp" alt="ماوس"></button>
+          <button class="thumb" data-thumb="3"><img src="usbhub.webp" alt="USB Hub"></button>
+          <button class="thumb" data-thumb="4"><img src="tapi.webp" alt="تابي"></button>
         </div>
       </div>
       <div class="product-info flex flex-col animate-fade-in-right">
@@ -188,7 +197,7 @@
       </div>
     </div>
     <div>
-      <a href="https://wa.me/212698476379?text=أريد+طلب+باك+الغيمنغ+الكامل" class="whatsapp-float"  onclick="fbq('track', 'Contact'); target="_blank">
+      <a href="https://wa.me/212698476379?text=أريد+طلب+باك+الغيمنغ+الكامل" class="whatsapp-float" target="_blank" onclick="if(typeof fbq==='function') fbq('track','Contact')">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
     </div>
