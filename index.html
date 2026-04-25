@@ -6,6 +6,46 @@
   <meta name="description" content="باك الغيمينغ الكامل — كيبورد + ماوس + USB Hub. العب بالماوس والكيبورد فهاتفك!">
   <title>باك الغيمينغ — اطلب دابا</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: 35px;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+/* لتعديل مكانه على الهواتف لكي لا يغطي عناصر مهمة */
+@media screen and (max-width: 767px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+  </style>
   <script>
     tailwind.config = {
       theme: {
@@ -146,6 +186,11 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <a href="https://wa.me/212698476379?text=أريد+طلب+باك+الغيمنغ+الكامل" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
     </div>
   </main>
   <script src="app.js"></script>
