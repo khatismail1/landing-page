@@ -6,7 +6,7 @@
  */
 
 // ─── الإعدادات ──────────────────────────────
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqtrYOJut-XgqdkOqi7L7is0w1p-pW0k10Vvu29ubw0vx8LZYN1-ioKhGiD5oEkSg-/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpgjfa5yufGw91tggsN0UPgi0jA2iXftBr-TjbQOhO4XJB16pYDzg-LiDti8sRyAmn/exec";
 const PRODUCT_VALUE = 279;
 const PRODUCT_CURRENCY = "MAD";
 
